@@ -81,12 +81,14 @@ result.documents.map((doc, index) => {
 });
 ```
 
-Description of ChromaDB
+### Description of ChromaDB
+
 ChromaDB is an advanced, open-source vector database designed to store, manage, and query high-dimensional vector embeddings efficiently. It powers applications in machine learning, natural language processing (NLP), recommendation systems, and other AI-driven domains. By leveraging vector embeddings—numerical representations of data—it enables similarity searches, clustering, and semantic analysis.
 
 At its core, ChromaDB facilitates fast, scalable, and accurate querying of vectors, making it a critical component for applications like document search, image retrieval, and personalized recommendations.
 
-How ChromaDB Works
+### How ChromaDB Works
+
 ChromaDB operates on the principle of managing vector embeddings, which are mathematical representations of data (text, images, etc.) in a multi-dimensional space. Here's a high-level breakdown of its functioning:
 
 1. Vectorization of Data
