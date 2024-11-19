@@ -3,3 +3,4 @@ chroma_env
 chroma_data
 chroma.log
 dist
+.env
