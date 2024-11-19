@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { ChromaClient } from 'chromadb';
 import { OpenAIEmbeddingFunction } from 'chromadb';
 import fs from 'fs';
-import path from 'path';
+import path, { join } from 'path';
 import OpenAI from 'openai';
 dotenv.config();
 const openai_api_key = process.env.OPENAI_API_KEY;
@@ -125,12 +125,54 @@ async function createDataBase(): Promise<boolean> {
   return false;
 }
 
-//createDataBase();
+async function queryDocument(question: string, nResults = 3) {
+  const result = await collection.query({
+    queryTexts: [question],
+    nResults,
+  });
+
+  // result.documents.map((doc: any, index: number) => {
+  //   console.log(doc);
+  //   console.log(result.ids[index]);
+  // });
+
+  return result.documents;
+}
+
+async function generateResponse(question: string, relevant_chunks: any[]) {
+  const context = relevant_chunks.join('\n\n');
+  const prompt = `You are an assistant for question-answering tasks. Use the following pieces of 
+  retrieved context to answer the question. If you don't know the answer, say that you 
+  don't know. Use three sentences maximum and keep the answer concise.
+  \n\nContext:${context}\n\nQuestion:${question}`;
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      {
+        role: 'system',
+        content: prompt,
+      },
+      {
+        role: 'user',
+        content: prompt,
+      },
+    ],
+  });
+
+  const answer = response.choices[0].message.content;
+  return answer;
+}
+
 async function main() {
   await createDataBase();
   const documents = await loadDataFromDir();
   const preppedData = await chuckTheDocuments(documents);
   await upsertToChroma(preppedData);
+  const question = 'tell me about the tech companies';
+  const relevantDocs = await queryDocument(question);
+  const answer = await generateResponse(question, relevantDocs);
+  console.log(answer);
 }
 
 main();
