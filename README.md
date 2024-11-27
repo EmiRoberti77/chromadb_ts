@@ -24,9 +24,8 @@ ChromaDB operates on the principle of managing vector embeddings, which are math
    Indexing: Vectors are indexed using highly optimized algorithms like Approximate Nearest Neighbor (ANN) search.
    Querying: Users query ChromaDB using embeddings or raw query texts, and ChromaDB compares these against stored vectors to find the most similar ones.
    Example: Searching for "Italian cars" might return a vector associated with "Ferrari" because their embeddings are close in vector space.
-   
-<img width="929" alt="Screenshot 2024-11-27 at 08 18 40" src="https://github.com/user-attachments/assets/0bf63f21-744b-4414-b8c5-fcf28095357b">
 
+<img width="929" alt="Screenshot 2024-11-27 at 08 18 40" src="https://github.com/user-attachments/assets/0bf63f21-744b-4414-b8c5-fcf28095357b">
 
 5. Metadata-Enhanced Search
    ChromaDB allows searches based on metadata in addition to vector similarity. This enables powerful filtering, like retrieving vectors based on specific attributes (e.g., source, category).
@@ -36,7 +35,7 @@ ChromaDB operates on the principle of managing vector embeddings, which are math
    Query Execution: Queries are run against the collections to fetch relevant vectors and associated data.
    Integration: ChromaDB integrates seamlessly with AI models to build advanced search engines, recommendation systems, and clustering tools.
 
-## Apllication workflow
+## Aplication workflow
 
    <img width="793" alt="Screenshot 2024-11-27 at 08 17 45" src="https://github.com/user-attachments/assets/17ae0743-2636-422f-b5bb-4ac862792141">
 
